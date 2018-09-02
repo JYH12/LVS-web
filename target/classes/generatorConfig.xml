@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<!--指定数据库的驱动 -->
+	<classPathEntry location="templib/mysql-connector-java-5.1.30.jar" />
+
+	<context id="DB2Tables" targetRuntime="MyBatis3"
+		defaultModelType="flat">
+
+		<property name="autoDelimitKeywords" value="true" />
+		<property name="beginningDelimiter" value="`" />
+		<property name="endingDelimiter" value="`" />
+
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true->是 false->否 -->
+			<property name="suppressAllComments" value="false" />
+			<!-- 是否生成注释代时间戳 -->
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+
+		<!-- 改 数据库链接地址账号密码 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/lvs-master"
+			userId="root" password="root">
+
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- Model, MAPPER, DAO -->
+		<javaModelGenerator targetPackage="com.unnet.triangle.lvs.master.model"
+			targetProject="src/main/java" /><!-- 改 -->
+		<sqlMapGenerator targetPackage="com.unnet.triangle.lvs.master.mapper"
+			targetProject="src/main/java" /><!-- 改 -->
+		<javaClientGenerator targetPackage="com.unnet.triangle.lvs.master.mapper"
+			targetProject="src/main/java" type="XMLMAPPER" /><!-- 改 -->
+
+		<!-- tables -->
+		<table tableName="%" enableCountByExample="true"
+			enableUpdateByExample="true" enableDeleteByExample="true"
+			enableSelectByExample="true" selectByExampleQueryId="true">
+			<property name="useActualColumnNames" value="true" />
+			<generatedKey column="id" sqlStatement="MySQL" identity="true" />
+		</table>
+	</context>
+</generatorConfiguration>
